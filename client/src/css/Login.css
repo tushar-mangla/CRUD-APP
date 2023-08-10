@@ -1,0 +1,382 @@
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Vampiro+One:wght@400&display=swap");
+.rectangle-1 {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(132, 141, 209, 0.14);
+  /* padding: 20px; */
+}
+.rectangle-2 {
+  width: 90%;
+  height: 80%;
+  margin-top: 5%;
+  /* flex-shrink: 0; */
+  border-radius: 40px;
+  background: #fff;
+}
+.rectangle-2 .header {
+  height: 20%;
+  width: 100%;
+}
+
+.rectangle-2 .layout {
+  width: 100%;
+  height: 80%;
+}
+
+.layout-img {
+  width: 65%;
+  height: 100%;
+}
+
+.img-fluid {
+  height: 90%;
+}
+
+.login-form {
+  width: 30%;
+  height: 100%;
+  padding: 20px;
+}
+.rectangle-3 {
+  margin: 8px;
+  padding: 10px;
+  height: 90%;
+  width: 95%;
+  border-radius: 25px;
+  background: rgba(222, 238, 246, 0.67);
+}
+
+.welcome {
+  color: #000;
+  text-align: left;
+  font-family: Urbanist;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  padding-bottom: 16px;
+  padding-top: 10px;
+}
+
+.email-img {
+  width: 24px;
+  height: 24px;
+  top: 535px;
+  left: 1213px;
+  flex-shrink: 0;
+}
+
+.email-input {
+  background-color: transparent;
+  border: 0px;
+  outline: none;
+  padding-left: 0px;
+}
+.form-row {
+  border-bottom: 2px solid #cbc8c8;
+}
+.form-row.log-choice {
+  border-bottom: 2px solid #cbc8c8;
+  /* display: none; */
+}
+.form-row.field {
+  padding-top: 32px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.btn-login {
+  margin-top: 40px;
+}
+.email-label {
+  color: #cbc8c8;
+  text-align: center;
+  font-family: Urbanist;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.mini-container {
+  width: 100%;
+  padding: 0 20px;
+  /* padding: 8px; */
+}
+
+.header-text1 {
+  padding-top: 25px;
+}
+.header-text-2 {
+}
+
+.create-an-account,
+.login1 {
+  position: absolute;
+  top: 45.94rem;
+  left: 65.19rem;
+  font-size: var(--font-size-3xl);
+  font-weight: 600;
+  color: var(--color-white);
+}
+.create-an-account {
+  top: 51.69rem;
+  left: 60.56rem;
+  color: var(--color-royalblue);
+}
+/* .login-child,
+.login-item {
+  position: absolute;
+  width: 96.31rem;
+  height: 20.22rem;
+}
+.login-child {
+  top: 10.31rem;
+  left: 0;
+}
+.login-item {
+  top: 38.31rem;
+  left: 33rem;
+}
+.login-inner {
+  position: absolute;
+  top: calc(50% - 403px);
+  left: calc(50% - 623px);
+  border-radius: 40px;
+  background-color: var(--color-white);
+  width: 77.88rem;
+  height: 50.38rem;
+}
+.rectangle-div {
+  position: absolute;
+  top: calc(50% - 185px);
+  left: 54.25rem;
+  border-radius: 25px;
+  background-color: rgba(222, 238, 246, 0.67);
+  width: 25.06rem;
+  height: 30.38rem;
+}
+.for-improved-learning,
+.welcome-back {
+  position: absolute;
+  font-weight: 600;
+  color: var(--color-black);
+}
+.welcome-back {
+  top: 22.75rem;
+  left: 55.81rem;
+  font-size: 2rem;
+}
+.for-improved-learning {
+  top: 11.25rem;
+  left: calc(50% - 210px);
+  font-size: 1.75rem;
+  display: inline-block;
+  width: 26.25rem;
+}
+.school-management-tool {
+  position: absolute;
+  top: 9.31rem;
+  left: calc(50% - 102px);
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+  color: var(--color-darkslategray);
+}
+.login-child1 {
+  position: absolute;
+  top: 16.94rem;
+  left: calc(50% - 59px);
+  border-radius: 18px;
+  background-color: #f2e2e6;
+  width: 7.31rem;
+  height: 2.25rem;
+}
+.learn-more {
+  position: absolute;
+  top: 17.5rem;
+  left: 42.56rem;
+  font-size: 0.94rem;
+  font-weight: 600;
+  color: #575656;
+}
+.union-child,
+.union-child1,
+.union-child2,
+.union-inner,
+.union-item {
+  position: absolute;
+  top: 0.54rem;
+  left: 0.75rem;
+  border-radius: 1.27px;
+  background-color: var(--color-cornflowerblue-100);
+  width: 0.48rem;
+  height: 0.48rem;
+  transform: rotate(-44.59deg);
+  transform-origin: 0 0;
+}
+.union-child1,
+.union-child2,
+.union-inner,
+.union-item {
+  top: 1.06rem;
+  left: 1.02rem;
+  border-radius: 0.63px;
+  width: 0.1rem;
+  height: 0.1rem;
+}
+.union-child1,
+.union-child2,
+.union-inner {
+  top: 1.07rem;
+  left: 1.29rem;
+  border-radius: 1.27px;
+  width: 0.48rem;
+  height: 0.48rem;
+}
+.union-child1,
+.union-child2 {
+  top: 1.06rem;
+  left: 0.2rem;
+}
+.union-child2 {
+  top: 1.58rem;
+  left: 0.75rem;
+}
+.union {
+  position: relative;
+  background-color: var(--color-white);
+  width: 1.72rem;
+  height: 1.66rem;
+}
+.logo1 {
+  border-radius: 7.32px;
+  background-color: var(--color-cornflowerblue-100);
+  display: flex;
+  flex-direction: column;
+  padding: 0.24rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.eschool,
+.logo {
+  position: absolute;
+}
+.logo {
+  top: 10.31rem;
+  left: 9.38rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.eschool {
+  top: 10.81rem;
+  left: 12.13rem;
+  font-family: var(--font-vampiro-one);
+  color: var(--color-darkslategray);
+}
+.login-child2,
+.login-child3,
+.login-child4 {
+  position: absolute;
+  top: 29.25rem;
+  left: 56.31rem;
+  background-color: var(--color-silver);
+  width: 21rem;
+  height: 0.13rem;
+}
+.login-child3,
+.login-child4 {
+  top: 35.31rem;
+}
+.login-child4 {
+  top: 41.38rem;
+}
+.mobile-id,
+.password {
+  position: absolute;
+  top: 27.69rem;
+  font-weight: 600;
+}
+.password {
+  left: 56.31rem;
+  color: var(--color-black);
+}
+.mobile-id {
+  left: 64.94rem;
+}
+.email {
+  top: 33.5rem;
+  left: 56.19rem;
+  font-size: var(--font-size-lg);
+}
+.email,
+.password1,
+.smart-id {
+  position: absolute;
+  font-weight: 600;
+}
+.password1 {
+  top: 39.56rem;
+  left: 56.19rem;
+  font-size: var(--font-size-lg);
+}
+.smart-id {
+  top: 27.69rem;
+  left: 73.38rem;
+}
+.login-child5 {
+  position: absolute;
+  top: 45.38rem;
+  left: 56.31rem;
+  border-radius: 12px;
+  background-color: var(--color-royalblue);
+  width: 21rem;
+  height: 2.75rem;
+}
+.create-an-account,
+.login1 {
+  position: absolute;
+  top: 45.94rem;
+  left: 65.19rem;
+  font-size: var(--font-size-3xl);
+  font-weight: 600;
+  color: var(--color-white);
+}
+.create-an-account {
+  top: 51.69rem;
+  left: 60.56rem;
+  color: var(--color-royalblue);
+}
+.image-2-icon {
+  position: absolute;
+  top: 19.94rem;
+  left: 7.94rem;
+  width: 44.75rem;
+  height: 33.56rem;
+  object-fit: cover;
+}
+.frame-icon,
+.frame-icon1 {
+  position: absolute;
+  top: 33.44rem;
+  left: 75.81rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  overflow: hidden;
+}
+.frame-icon1 {
+  top: 39.5rem;
+}
+.login {
+  position: relative;
+  background-color: rgba(132, 141, 209, 0.14);
+  width: 100%;
+  height: 64rem;
+  overflow: hidden;
+  text-align: center;
+  font-size: var(--font-size-base);
+  color: var(--color-silver);
+  font-family: var(--font-urbanist);
+} */

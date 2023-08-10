@@ -87,55 +87,21 @@ export const deleteStudent = async (req, res) => {
   res.status(StatusCodes.OK).json({ Student: removedStudent });
 };
 
-export const aggregateStudentsByGenderAndClass = async (req, res) => {
+export const studentCustom = async (req, res) => {
+  const { studentId } = req.params;
+  const { customFields } = req.body;
+
   try {
-    const aggregatedStudents = await Student.aggregate([
-      {
-        $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) },
-      },
-      {
-        $group: {
-          _id: {
-            gender: "$gender",
-            class: "$studentClass",
-          },
-          count: { $sum: 1 },
-        },
-      },
-      {
-        $project: {
-          _id: 0,
-          gender: "$_id.gender",
-          class: "$_id.class",
-          count: 1,
-        },
-      },
-      {
-        $group: {
-          _id: "$class",
-          maleCount: {
-            $sum: {
-              $cond: [{ $eq: ["$gender", "male"] }, "$count", 0],
-            },
-          },
-          femaleCount: {
-            $sum: {
-              $cond: [{ $eq: ["$gender", "female"] }, "$count", 0],
-            },
-          },
-        },
-      },
-      {
-        $project: {
-          _id: 0,
-          class: "$_id",
-          maleCount: { $ifNull: ["$maleCount", 0] },
-          femaleCount: { $ifNull: ["$femaleCount", 0] },
-        },
-      },
-    ]);
-    res.status(StatusCodes.OK).json(aggregatedStudents);
+    // Update the student's customFields array with the provided data
+    const updatedStudent = await Student.findByIdAndUpdate(
+      studentId,
+      { customFields },
+      { new: true }
+    ).exec();
+
+    res.json(updatedStudent);
   } catch (error) {
-    console.error("Error during aggregation:", error);
+    console.error("Error updating student custom fields:", error);
+    res.status(500).json({ error: "Server error" });
   }
 };

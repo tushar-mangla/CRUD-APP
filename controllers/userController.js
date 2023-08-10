@@ -25,9 +25,7 @@ export const updatePassword = async (req, res) => {
   try {
     const user = await User.findById(req.user.userId);
     if (!user) {
-      return res
-        .status(StatusCodes.NOT_FOUND)
-        .json({ error: "User not found" });
+      return res.status(StatusCodes.NOT_FOUND).json({ msg: "User not found" });
     }
 
     const isPreviousPasswordValid = await comparePassword(
@@ -38,7 +36,7 @@ export const updatePassword = async (req, res) => {
     if (!isPreviousPasswordValid) {
       return res
         .status(StatusCodes.UNAUTHORIZED)
-        .json({ error: "Invalid previous password" });
+        .json({ msg: "Invalid previous password" });
     }
 
     const hashedPassword = await hashPassword(req.body.newPassword);
@@ -52,6 +50,61 @@ export const updatePassword = async (req, res) => {
     console.error(error);
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ error: "An error occurred while updating the password" });
+      .json({ msg: "An error occurred while updating the password" });
+  }
+};
+
+export const aggregateStudentsByGenderAndClass = async (req, res) => {
+  try {
+    const aggregatedStudents = await Student.aggregate([
+      {
+        $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) },
+      },
+      {
+        $group: {
+          _id: {
+            gender: "$gender",
+            class: "$studentClass",
+          },
+          count: { $sum: 1 },
+        },
+      },
+      {
+        $group: {
+          _id: "$_id.class",
+          counts: {
+            $push: {
+              gender: "$_id.gender",
+              count: "$count",
+            },
+          },
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          class: "$_id",
+          counts: 1,
+        },
+      },
+    ]);
+
+    const transformedData = aggregatedStudents.map((item) => {
+      const classData = { class: item.class, male: 0, female: 0 };
+
+      item.counts.forEach((countItem) => {
+        if (countItem.gender === "male") {
+          classData.male = countItem.count;
+        } else if (countItem.gender === "female") {
+          classData.female = countItem.count;
+        }
+      });
+
+      return classData;
+    });
+
+    res.status(StatusCodes.OK).json(transformedData);
+  } catch (error) {
+    console.error("Error during aggregation:", error);
   }
 };

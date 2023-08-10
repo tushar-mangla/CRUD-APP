@@ -11,6 +11,7 @@ import cookieParser from "cookie-parser";
 import authRouter from "./routers/authRouter.js";
 import studentRouter from "./routers/studentRouter.js";
 import userRouter from "./routers/userRouter.js";
+import customFieldRouter from "./routers/customFieldRouter.js";
 
 import { dirname } from "path";
 import { fileURLToPath } from "url";
@@ -42,6 +43,7 @@ app.post("/", (req, res) => {
 app.use("/api/v1/students", authenticateUser, studentRouter);
 app.use("/api/v1/users", authenticateUser, userRouter);
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/custom", authenticateUser, customFieldRouter);
 
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "not found" });

@@ -1,0 +1,18 @@
+.choice {
+  display: inline-block;
+  color: grey;
+  margin-bottom: 5px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.choice.active {
+  color: black;
+}
+
+.text-start {
+  padding-left: 0px;
+}
+.text-end {
+  padding-right: 0px;
+}

@@ -7,7 +7,7 @@ import {
   createStudent,
   updateStudent,
   deleteStudent,
-  aggregateStudentsByGenderAndClass,
+  studentCustom,
 } from "../controllers/studentController.js";
 
 import {
@@ -17,7 +17,6 @@ import {
 
 router.route("/").get(getAllStudents).post(validateStudentInput, createStudent);
 
-router.get("/aggregate-students", aggregateStudentsByGenderAndClass);
 router
   .route("/:id")
   .get(validateIdParam, getStudent)
@@ -25,3 +24,5 @@ router
   .delete(validateIdParam, deleteStudent);
 
 export default router;
+
+router.put("/:studentId/custom-fields", studentCustom);

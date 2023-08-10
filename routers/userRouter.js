@@ -5,6 +5,7 @@ import {
   getCurrentUser,
   updateUser,
   updatePassword,
+  aggregateStudentsByGenderAndClass,
 } from "../controllers/userController.js";
 import {
   validateUpdateUserInput,
@@ -19,6 +20,6 @@ router.patch(
   validateUpdateUserInput,
   updateUser
 );
-
+router.get("/stats", aggregateStudentsByGenderAndClass);
 router.put("/update-password", validateUpdatePasswordInput, updatePassword);
 export default router;

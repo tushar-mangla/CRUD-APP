@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Vampiro+One:wght@400&display=swap");
+body {
+  margin: 0;
+  line-height: normal;
+}
+:root {
+  /* fonts */
+  --font-urbanist: Urbanist;
+  --font-vampiro-one: "Vampiro One";
+
+  /* font sizes */
+  --font-size-3xl: 1.38rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.13rem;
+
+  /* Colors */
+  --color-cornflowerblue-100: #2196f3;
+  --color-royalblue: #3370d5;
+  --color-white: #fff;
+  --color-silver: #cbc8c8;
+  --color-black: #000;
+  --color-darkslategray: #434141;
+
+  /* border radiuses */
+  --br-11xs-3: 1.3px;
+}

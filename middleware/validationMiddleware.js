@@ -50,19 +50,19 @@ export const validateStudentInput = withValidationErrors([
     .withMessage("Invalid gender value"),
   body("parentsName").notEmpty().withMessage("Parents' name is required"),
   body("address").notEmpty().withMessage("Address is required"),
-  validateDate("joiningInfo.interviewDate"),
-  body("joiningInfo.guardianName")
-    .optional()
-    .notEmpty()
-    .withMessage("Guardian name is required"),
-  body("joiningInfo.relationWithGuardian")
-    .optional()
-    .notEmpty()
-    .withMessage("Relation with guardian is required"),
-  body("joiningInfo.interviewer")
-    .optional()
-    .notEmpty()
-    .withMessage("Interviewer is required"),
+  // validateDate("joiningInfo.interviewDate"),
+  // body("joiningInfo.guardianName")
+  //   .optional()
+  //   .notEmpty()
+  //   .withMessage("Guardian name is required"),
+  // body("joiningInfo.relationWithGuardian")
+  //   .optional()
+  //   .notEmpty()
+  //   .withMessage("Relation with guardian is required"),
+  // body("joiningInfo.interviewer")
+  //   .optional()
+  //   .notEmpty()
+  //   .withMessage("Interviewer is required"),
 ]);
 
 export const validateIdParam = withValidationErrors([
@@ -77,6 +77,41 @@ export const validateIdParam = withValidationErrors([
   }),
 ]);
 
+// export const validateRegisterInput = withValidationErrors([
+//   body("name").notEmpty().withMessage("name is required"),
+//   body("email")
+//     .notEmpty()
+//     .withMessage("email is required")
+//     .isEmail()
+//     .withMessage("invalid email format")
+//     .custom(async (email) => {
+//       const user = await User.findOne({ email });
+//       if (user) throw new BadRequestError("email already exist");
+//     }),
+//   body("mobilePhone")
+//     .notEmpty()
+//     .withMessage("mobilePhone no. is required")
+//     .isMobilePhone()
+//     .withMessage("invalid mobilePhone format")
+//     .custom(async (mobilePhone) => {
+//       const user = await User.findOne({ mobilePhone });
+//       if (user) throw new BadRequestError("mobilePhone already exist");
+//     }),
+//   body("password")
+//     .notEmpty()
+//     .withMessage("password is required")
+//     .isStrongPassword({
+//       minLength: 8,
+//       minLowercase: 1,
+//       minUppercase: 1,
+//       minNumbers: 1,
+//       minSymbols: 1,
+//     })
+//     .withMessage(
+//       "Password must contain at least 1 lowercase letter, 1 uppercase letter, 1 digit, 1 special character, and be at least 8 characters long"
+//     ),
+// ]);
+
 export const validateRegisterInput = withValidationErrors([
   body("name").notEmpty().withMessage("name is required"),
   body("email")
@@ -87,15 +122,6 @@ export const validateRegisterInput = withValidationErrors([
     .custom(async (email) => {
       const user = await User.findOne({ email });
       if (user) throw new BadRequestError("email already exist");
-    }),
-  body("mobilePhone")
-    .notEmpty()
-    .withMessage("mobilePhone no. is required")
-    .isMobilePhone()
-    .withMessage("invalid mobilePhone format")
-    .custom(async (mobilePhone) => {
-      const user = await User.findOne({ mobilePhone });
-      if (user) throw new BadRequestError("mobilePhone already exist");
     }),
   body("password")
     .notEmpty()
@@ -110,6 +136,15 @@ export const validateRegisterInput = withValidationErrors([
     .withMessage(
       "Password must contain at least 1 lowercase letter, 1 uppercase letter, 1 digit, 1 special character, and be at least 8 characters long"
     ),
+  body("confirmPassword")
+    .notEmpty()
+    .withMessage("Confirm password is required")
+    .custom((value, { req }) => {
+      if (value !== req.body.password) {
+        throw new Error("Confirm password does not match new password");
+      }
+      return true;
+    }),
 ]);
 
 const isEmailOrMobilePhone = (value) => {

@@ -5,11 +5,11 @@ import { UnauthenticatedError } from "../errors/customErrors.js";
 export const authenticateUser = async (req, res, next) => {
   const { token } = req.cookies;
 
-  console.log("Received token:", token);
+  // console.log("Received token:", token);
 
   if (!token) {
     console.log("Token not found in cookies");
-    throw new UnauthenticatedError("Authentication invalid");
+    return res.status(401).send({ msg: "user not authenticaed" });
   }
 
   try {

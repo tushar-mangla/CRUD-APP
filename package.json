@@ -5,7 +5,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon server.js"
+    "setup-project": "npm i && cd client && npm i",
+    "setup-production-app": "npm i && cd client && npm i && npm run build",
+    "server": "nodemon server",
+    "client": "cd client && npm run dev",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
   "keywords": [],
   "author": "",
@@ -13,7 +17,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.37.3",
-    "concurrently": "^8.0.1",
+    "concurrently": "^8.2.0",
     "cookie-parser": "^1.4.6",
     "datauri": "^4.1.0",
     "dayjs": "^1.11.9",

@@ -10,10 +10,12 @@ const StudentSchema = new mongoose.Schema(
     firstName: {
       type: String,
       required: true,
+      maxlength: 64,
     },
     lastName: {
       type: String,
       required: true,
+      maxlength: 45,
     },
     dob: {
       type: Date,
@@ -22,6 +24,7 @@ const StudentSchema = new mongoose.Schema(
     studentClass: {
       type: String,
       required: true,
+      maxlength: 45,
     },
     gender: {
       type: String,
@@ -31,18 +34,26 @@ const StudentSchema = new mongoose.Schema(
     parentsName: {
       type: String,
       required: true,
+      maxlength: 54,
     },
-    address: { type: String, required: true },
-    details: { type: String },
-    joiningInfo: {
-      interviewDate: { type: Date },
-      guardianName: { type: String },
-      relationWithGuardian: { type: String },
-      interviewer: { type: String },
+    address: {
+      type: String,
+      required: true,
+      maxlength: 54,
+    },
+    details: {
+      type: String,
+      maxlength: 54,
     },
     createdBy: {
       type: mongoose.Types.ObjectId,
       ref: "User",
+      required: true,
+    },
+    customFields: {
+      type: Map,
+      of: String,
+      default: {},
     },
   },
   { timestamps: true }
