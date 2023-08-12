@@ -34,7 +34,6 @@ const App = () => {
             <Route path="students" element={<AllStudents />} />
             <Route path="settings" element={<GetAllCustoms />} />
             <Route path="settings/addCustom" element={<AddCustomField />} />
-            <Route path="settings/:customId" element={<EditCustomField />} />
             <Route path="addStudent" element={<AddStudent />} />
 
             <Route path="students/:studentId" element={<EditStudent />} />

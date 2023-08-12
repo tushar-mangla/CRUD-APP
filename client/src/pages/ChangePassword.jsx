@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import customFetch from "../utils/customFetch";
 // import { useDashboardContext } from "../pages/Dashboard";
 import { toast } from "react-toastify";
+import bullet from "../images/bullet.svg";
+import leftArrow from "../images/leftArrow.svg";
 
 const ChangePassword = () => {
   // const { user } = useDashboardContext();
@@ -45,38 +47,82 @@ const ChangePassword = () => {
   };
 
   return (
-    <div>
-      <h2>Change Password</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="previousPassword">Previous Password:</label>
-        <input
-          type="password"
-          id="previousPassword"
-          name="previousPassword"
-          value={passwords.previousPassword}
-          onChange={handleChange}
-        />
+    <div className="ChangePasswordContainer">
+      <div className="rightSide">
+        <div className="password">
+          <div className="heading"></div>
+          <p className="subheading">Change your password.</p>
 
-        <label htmlFor="newPassword">New Password:</label>
-        <input
-          type="password"
-          id="newPassword"
-          name="newPassword"
-          value={passwords.newPassword}
-          onChange={handleChange}
-        />
+          <form onSubmit={handleSubmit}>
+            <div className="input">
+              <p className="inputHeading">Old Password</p>
+              <input
+                className="inpputText"
+                type="password"
+                id="previousPassword"
+                name="previousPassword"
+                value={passwords.previousPassword}
+                onChange={handleChange}
+              />
+            </div>
 
-        <label htmlFor="confirmPassword">Confirm Password:</label>
-        <input
-          type="password"
-          id="confirmPassword"
-          name="confirmPassword"
-          value={passwords.confirmPassword}
-          onChange={handleChange}
-        />
+            <div className="input">
+              <p className="inputHeading">New Password</p>
+              <input
+                className="inpputText"
+                type="password"
+                id="newPassword"
+                name="newPassword"
+                value={passwords.newPassword}
+                onChange={handleChange}
+              />
+            </div>
 
-        <button type="submit">Change Password</button>
-      </form>
+            <div className="input">
+              <p className="inputHeading">Confirm Password</p>
+              <input
+                className="inpputText"
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                value={passwords.confirmPassword}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="bulletList">
+              <div className="list">
+                <img className="listImage" src={bullet} />
+                <p className="listPara">Atleast 1 Special characters</p>
+              </div>
+              <div className="list">
+                <img className="listImage" src={bullet} />
+                <p className="listPara">Atleast 1 Lowercase letter</p>
+              </div>
+              <div className="list">
+                <img className="listImage" src={bullet} />
+                <p className="listPara">Atleast 1 Uppercase letter</p>
+              </div>
+              <div className="list">
+                <img className="listImage" src={bullet} />
+                <p className="listPara">Atleast 1 Digit</p>
+              </div>
+              <div className="list">
+                <img className="listImage" src={bullet} />
+                <p className="listPara">Atleast 8 characters</p>
+              </div>
+            </div>
+
+            <div>
+              <div className="button">
+                <button className="save" type="submit">
+                  Save
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };

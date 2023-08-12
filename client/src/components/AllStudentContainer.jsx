@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import "../style/AllStudent.scss";
+import actionIcon from "../images/actionIcon.svg";
+import { RiDeleteBin5Line } from "react-icons/Ri";
 const StudentContainer = ({
   students,
   currentPage,
@@ -9,10 +11,10 @@ const StudentContainer = ({
   handleDelete,
 }) => {
   return (
-    <div>
-      <table className="table">
+    <div className="studentList">
+      <table className="tableContainer">
         <thead>
-          <tr>
+          <tr className="tableHeader">
             <th>Student ID</th>
             <th>First Name</th>
             <th>Last Name</th>
@@ -21,30 +23,31 @@ const StudentContainer = ({
             <th>Parents Name</th>
             <th>Address</th>
             <th>Edit</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
           {students.map((student) => (
             <tr key={student._id}>
-              <td>{student.studentId}</td>
-              <td>{student.firstName}</td>
-              <td>{student.lastName}</td>
-              <td>{new Date(student.dob).toLocaleDateString()}</td>
-              <td>{student.studentClass}</td>
-              <td>{student.parentsName}</td>
-              <td>{student.address}</td>
-              <td>
+              <td className="listItems">{student.studentId}</td>
+              <td className="listItems">{student.firstName}</td>
+              <td className="listItems">{student.lastName}</td>
+              <td className="listItems">
+                {new Date(student.dob).toLocaleDateString()}
+              </td>
+              <td className="listItems">{student.studentClass}</td>
+              <td className="listItems">{student.parentsName}</td>
+              <td className="listItems">{student.address}</td>
+              <td className="listItems">
                 <Link
                   to={`/dashboard/students/${student._id}`}
                   state={{ studentDetails: student }}
                 >
-                  Edit
+                  <img src={actionIcon} />
                 </Link>
               </td>
-              <td>
-                <button onClick={() => handleDelete(student._id)}>
-                  Delete
-                </button>
+              <td className="listItems">
+                <RiDeleteBin5Line onClick={() => handleDelete(student._id)} />
               </td>
             </tr>
           ))}

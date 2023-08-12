@@ -1,23 +1,29 @@
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BarChartComponent } from "../components";
-import customFetch from "../utils/customFetch";
 import { toast } from "react-toastify";
+import { useDashboardContext } from "../pages/Dashboard";
+import customFetch from "../utils/customFetch";
 
 const Stats = () => {
   const [data, setData] = useState([]);
+  const { user } = useDashboardContext();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await customFetch.get("/users/stats");
-        setData(response.data);
+        if (user) {
+          const response = await customFetch.get("/users/stats");
+          // console.log(response);
+          setData(response.data);
+        }
       } catch (error) {
         toast.error(error?.response?.data?.msg);
       }
     };
-
-    fetchData();
-  }, []);
+    if (user) {
+      fetchData();
+    }
+  }, [user]);
 
   return <BarChartComponent data={data} />;
 };

@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 import { comparePassword, hashPassword } from "../utils/passwordUtils.js";
 
 export const getCurrentUser = async (req, res) => {
+  console.log("dd");
   const user = await User.findOne({ _id: req.user.userId });
   const userWithoutPassword = user.toJSON();
   res.status(StatusCodes.OK).json({ user: userWithoutPassword });

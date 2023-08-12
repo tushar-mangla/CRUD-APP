@@ -1,10 +1,10 @@
-/* eslint-disable react-refresh/only-export-components */
-import { useState, useEffect, createContext, useContext } from "react";
+import React, { useState, createContext, useContext, useEffect } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
-import { Sidebar } from "../components"; // Import your Sidebar component
+import { Sidebar } from "../components";
 import customFetch from "../utils/customFetch";
 import { toast } from "react-toastify";
 import Navbar from "../components/Navbar";
+import "../style/Dashboard.scss";
 
 const DashboardContext = createContext();
 
@@ -22,10 +22,14 @@ const DashboardLayout = () => {
     const fetchData = async () => {
       try {
         const { data } = await customFetch.get("/users/current-user");
-        setUser(data);
+        if (data) {
+          setUser(data);
+        } else {
+          navigate("/login");
+        }
       } catch (error) {
         toast.error(error?.response?.data?.msg);
-        navigate("/");
+        navigate("/login");
       }
     };
 
@@ -39,17 +43,15 @@ const DashboardLayout = () => {
         logoutUser,
       }}
     >
-      <div className="row">
-        <div className="col-2">
+      <div className="ChangePasswordContainer">
+        <div className="leftSide">
           <Sidebar />
         </div>
-        <div className="col-10">
-          <div className="row-2">
+        <div className="rightSide">
+          <div className="navbarSection">
             <Navbar />
           </div>
-          <div className="row-10">
-            <Outlet />
-          </div>
+          <div className="row-10">{<Outlet context={{ user }} />}</div>
         </div>
       </div>
     </DashboardContext.Provider>

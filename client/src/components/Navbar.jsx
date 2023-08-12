@@ -1,6 +1,13 @@
-import React, { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDashboardContext } from "../pages/Dashboard";
+import "../style/Navbar.scss";
+import { FaUser } from "react-icons/fa";
+import globe from "../images/globe.svg";
+import keyIcon from "../images/keyIcon.svg";
+import logout from "../images/logout.svg";
+import profileIcon from "../images/profileIcon.svg";
+import upArrow from "../images/upArrow.svg";
 
 const Navbar = () => {
   const { user, logoutUser } = useDashboardContext();
@@ -10,42 +17,50 @@ const Navbar = () => {
     await logoutUser();
     navigate("/login");
   };
+  const [showProfile, setShowProfile] = useState(false);
+  const path = "";
 
   return (
-    <nav className="navbar navbar-expand-md navbar-light bg-light">
-      <div className="container-fluid">
-        <div className="navbar-collapse justify-content-end">
-          <ul className="navbar-nav">
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                {user?.user?.name || "Guest"}
-              </a>
-              <ul className="dropdown-menu dropdown-menu-end">
-                <li>
-                  <Link className="dropdown-item" to="profile">
-                    Profile
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="profile/update-password">
-                    Change Password
-                  </Link>
-                </li>
-                <li>
-                  <button className="dropdown-item" onClick={handleLogout}>
-                    Logout
-                  </button>
-                </li>
-              </ul>
-            </li>
-          </ul>
+    <nav className="navbar">
+      <div className="path">{path}</div>
+      <div className="navbarProfile">
+        <img className="globe" src={globe} />
+        {user?.user?.avatar ? (
+          <img
+            className="profileImage"
+            src={user.user.avatar}
+            alt={`${user.user.name} `}
+          />
+        ) : (
+          <FaUser className="profileImage" />
+        )}
+        <div
+          className="usernamAdmin"
+          onClick={() => setShowProfile(!showProfile)}
+        >
+          <div className="username">
+            <div className="name">{user?.user?.name}</div>
+            <img
+              className={`arrow ${showProfile ? "uparrow" : ""}`}
+              src={upArrow}
+            />
+          </div>
+          <p className="admin">Admin</p>
         </div>
+      </div>
+      <div className={`profileModal ${showProfile ? "show" : "hide"}`}>
+        <Link to="profile" className="items">
+          <img className="itemImage" src={profileIcon} />
+          <p className="itemPara">Profile</p>
+        </Link>
+        <Link to="profile/update-password" className="items">
+          <img className="itemImage" src={keyIcon} />
+          <p className="itemPara">Change Password</p>
+        </Link>
+        <Link to="/" className="items" onClick={handleLogout}>
+          <img className="itemImage" src={logout} />
+          <p className="itemPara">Log Out</p>
+        </Link>
       </div>
     </nav>
   );

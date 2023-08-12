@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import customFetch from "../utils/customFetch";
 import StudentContainer from "../components/AllStudentContainer";
-
+import plus from "../images/plus.svg";
+import edit from "../images/edit.svg";
+import search from "../images/search.svg";
+import "../style/AllStudent.scss";
 const AllStudents = () => {
   const [students, setStudents] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -37,20 +40,38 @@ const AllStudents = () => {
   };
 
   return (
-    <div>
-      <div className="d-flex justify-content-between align-items-center">
-        <h2>All Students</h2>
-        <Link to="/dashboard/addStudent" className="btn btn-primary">
-          Add Student
-        </Link>
+    <div className="addNewStudentContainer">
+      <div className="rightSide">
+        <div className="studentListContainer">
+          <div className="topbar">
+            <div className="search">
+              <img className="image" src={search} />
+              <input
+                className="input"
+                placeholder="Search for Students..."
+                // onChange={Filter}
+              />
+            </div>
+            <div className="rightBtn">
+              <Link className="edit">
+                <img className="image " src={edit} />
+                <p className="para">Edit Student Details</p>
+              </Link>
+              <Link to="/dashboard/addStudent" className="addNew">
+                <img className="image " src={plus} />
+                <p className="para">Add New</p>
+              </Link>
+            </div>
+          </div>
+          <StudentContainer
+            students={students}
+            currentPage={currentPage}
+            numOfPages={totalPages}
+            handlePageChange={handlePageChange}
+            handleDelete={handleDelete}
+          />
+        </div>
       </div>
-      <StudentContainer
-        students={students}
-        currentPage={currentPage}
-        numOfPages={totalPages}
-        handlePageChange={handlePageChange}
-        handleDelete={handleDelete}
-      />
     </div>
   );
 };

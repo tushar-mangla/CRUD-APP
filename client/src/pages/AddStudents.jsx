@@ -2,8 +2,11 @@ import { useState, useEffect } from "react";
 import customFetch from "../utils/customFetch";
 import { useNavigate } from "react-router-dom";
 import CustomFieldsForm from "../components/CustomFieldsForm";
-import "../css/AddStudent.css";
+import "../style/AddStudent.scss";
 import { OrganizeCustomFields } from "../components";
+import iconUser from "../images/iconUser.svg";
+import avatar from "../images/avatar.svg";
+import location from "../images/location.svg";
 
 const AddStudent = () => {
   const navigate = useNavigate();
@@ -80,103 +83,167 @@ const AddStudent = () => {
   };
 
   return (
-    <div>
-      <h2>Add Student</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="studentId">Student ID:</label>
-        <input
-          type="text"
-          id="studentId"
-          name="studentId"
-          value={formData.studentId}
-          onChange={handleChange}
-        />
+    <div className="addNewStudentContainer">
+      <div className="rightSide">
+        <form className="addStudent" onSubmit={handleSubmit}>
+          <img className="image" src={avatar} />
+          <div className="nameSection">
+            <div>
+              <p>FirstName</p>
+              {/* <label htmlFor="firstName">First Name</label> */}
+              <div className="formRow">
+                <input
+                  className="formInput"
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                />
+                <img className="inputImage" src={iconUser} />
+              </div>
+            </div>
+            <div>
+              {/* <label htmlFor="lastName">Last Name</label> */}
+              <p>Last Name</p>
+              <div className="formRow">
+                <input
+                  className="formInput"
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                />
+                <img className="inputImage" src={iconUser} />
+              </div>
+            </div>
+          </div>
 
-        <label htmlFor="firstName">First Name:</label>
-        <input
-          type="text"
-          id="firstName"
-          name="firstName"
-          value={formData.firstName}
-          onChange={handleChange}
-        />
+          <div className="nameSection">
+            <div>
+              <p>ID</p>
+              <div className="formRow">
+                {/* <label htmlFor="studentId">Student ID:</label> */}
+                <input
+                  className="formInput"
+                  type="text"
+                  id="studentId"
+                  name="studentId"
+                  value={formData.studentId}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+            <div>
+              <p>Date of Birth</p>
+              {/* <label htmlFor="dob">Date of Birth:</label> */}
+              <div className="formRow">
+                <input
+                  className="formInput"
+                  type="date"
+                  id="dob"
+                  name="dob"
+                  value={formData.dob}
+                  onChange={handleChange}
+                  max={new Date().toISOString().split("T")[0]}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="nameSection">
+            <div>
+              <p>Class</p>
+              {/* <label htmlFor="studentClass">Class:</label> */}
+              <div className="formRow">
+                <input
+                  className="formInput"
+                  type="text"
+                  id="studentClass"
+                  name="studentClass"
+                  value={formData.studentClass}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
 
-        <label htmlFor="lastName">Last Name:</label>
-        <input
-          type="text"
-          id="lastName"
-          name="lastName"
-          value={formData.lastName}
-          onChange={handleChange}
-        />
+            {/* <label htmlFor="gender">Gender:</label> */}
+            <div>
+              <p>Gender</p>
+              <div className="formRow">
+                <select
+                  className="formInput"
+                  id="gender"
+                  name="gender"
+                  value={formData.gender}
+                  onChange={handleChange}
+                >
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+          </div>
 
-        <label htmlFor="dob">Date of Birth:</label>
-        <input
-          type="date"
-          id="dob"
-          name="dob"
-          value={formData.dob}
-          onChange={handleChange}
-          max={new Date().toISOString().split("T")[0]}
-        />
+          <div className="nameSection">
+            <div>
+              <p>Parent's Name</p>
+              {/* <label htmlFor="parentsName">Parents Name:</label> */}
+              <div className="formRow">
+                <input
+                  className="formInput"
+                  type="text"
+                  id="parentsName"
+                  name="parentsName"
+                  value={formData.parentsName}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+            <div>
+              <p>Address</p>
+              {/* <label htmlFor="address">Address:</label> */}
+              <div className="formRow">
+                <input
+                  className="formInput"
+                  type="text"
+                  id="address"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+          </div>
 
-        <label htmlFor="studentClass">Class:</label>
-        <input
-          type="text"
-          id="studentClass"
-          name="studentClass"
-          value={formData.studentClass}
-          onChange={handleChange}
-        />
+          <div className="details">
+            <p>Details</p>
+            {/* <label htmlFor="details">Details:</label> */}
+            <textarea
+              className="detailsInput"
+              id="details"
+              name="details"
+              value={formData.details}
+              onChange={handleChange}
+            />
+          </div>
 
-        <label htmlFor="gender">Gender:</label>
-        <select
-          id="gender"
-          name="gender"
-          value={formData.gender}
-          onChange={handleChange}
-        >
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="other">Other</option>
-        </select>
+          {customFieldsData && (
+            <CustomFieldsForm
+              customFieldsData={customFieldsData}
+              customFields={customFields}
+              handleCustomFieldChange={handleCustomFieldChange}
+            />
+          )}
 
-        <label htmlFor="parentsName">Parents Name:</label>
-        <input
-          type="text"
-          id="parentsName"
-          name="parentsName"
-          value={formData.parentsName}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="address">Address:</label>
-        <input
-          type="text"
-          id="address"
-          name="address"
-          value={formData.address}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="details">Details:</label>
-        <textarea
-          id="details"
-          name="details"
-          value={formData.details}
-          onChange={handleChange}
-        />
-
-        {customFieldsData && (
-          <CustomFieldsForm
-            customFieldsData={customFieldsData}
-            customFields={customFields}
-            handleCustomFieldChange={handleCustomFieldChange}
-          />
-        )}
-
-        <button type="submit">Add Student</button>
-      </form>
+          <div className="buttonContainer">
+            <button className="button" type="submit">
+              Add Student
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

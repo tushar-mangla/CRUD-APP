@@ -1,9 +1,12 @@
-import LogoStyle from "../assets/Style/Logo";
-
+import mainLogo from "../images/mainLogo.svg";
 const Logo = () => {
   return (
     <>
-      <div className="d-flex flex-row">
+      <div className="mainLogo">
+        <img className="logo" src={mainLogo} />
+        <p className="logoText">eSchool</p>
+      </div>
+      {/* <div className="d-flex flex-row">
         <div className="p-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +34,7 @@ const Logo = () => {
         <div className="p-2">
           <LogoStyle>eSchool</LogoStyle>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

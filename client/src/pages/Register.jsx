@@ -2,9 +2,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FormRow } from "../components";
 import Logo from "../components/Logo";
+import { Link } from "react-router-dom";
 import customFetch from "../utils/customFetch";
+import groupPhoto from "../images/groupPhoto.png";
+import emailLogo from "../images/emailLogo.svg";
+import mainLogo from "../images/mainLogo.svg";
 import { toast } from "react-toastify";
-import "../css/Register.css";
+import "../style/RegisterPage.scss";
 import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
@@ -29,211 +33,79 @@ const Register = () => {
     }
   };
   return (
-    <div className="rectangle-1 d-flex justify-content-center">
-      <div className="container rectangle-2">
-        <div className="d-flex  align-items-start header">
-          <div>
-            <Logo />
-          </div>
-          <div className="d-flex w-100 flex-column justify-content-center align-items-center">
-            <div className="h5 header-text1">School Management Tool </div>
-            <div className="h3 header-text2">
-              <div className="d-flex flex-column text-start">
-                <div className="row text-center">For Improved Learning and</div>
-                <div className="row text-center">Teaching experience !</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="row layout">
-          <div className="col layout-img">
-            <img
-              src="../../public/Images/login.png"
-              className="img-fluid"
-              alt="Login image"
-            />
-          </div>
-          <div className="login-form">
-            <div className="row rectangle-3">
-              <div className="col">
-                <div className="row d-flex justify-content-center">
-                  <h2
-                    style={{
-                      color: "#000",
-                      textAlign: "center",
-                      fontFamily: "Urbanist",
-                    }}
-                  >
-                    Create Account
-                  </h2>
-                </div>
+    <div className="LoginPageContainer">
+      <div className="mainLogo">
+        <img className="logo" src={mainLogo} />
+        <p className="logoText">eSchool</p>
+      </div>
+      <div className="mainHeading">
+        <p className="heading1">School Management Tool</p>
+        <p className="heading2">
+          For Improved Learning and <br /> Teaching experience !
+        </p>
+      </div>
+      <div className="learnMoreSection">
+        <button className="learnMoreButton">Learn More</button>
+      </div>
+      <div className="Loginpageform">
+        <img className="mainImage" src={groupPhoto} />
 
-                <div className="mini-container">
-                  <div className="row">
-                    <form method="post" onSubmit={handleSubmit}>
-                      <div className="row">
-                        <div className="col form-row field">
-                          <FormRow
-                            className="col email-input"
-                            type="string"
-                            name="name"
-                            onChange={(e) => setName(e.target.value)}
-                            value={name}
-                            placeholder="Name"
-                            style={{ marginRight: "10px" }}
-                          />
-                        </div>
-                        <div className="col form-row field">
-                          <FormRow
-                            className="col email-input"
-                            type="email"
-                            name="email"
-                            onChange={(e) => setEmail(e.target.value)}
-                            value={email}
-                            placeholder="Email"
-                            style={{ marginRight: "10px" }}
-                          />
-                        </div>
-                        <div className="col form-row field">
-                          <FormRow
-                            className="col email-input"
-                            type="password"
-                            name="password"
-                            onChange={(e) => setPassword(e.target.value)}
-                            value={password}
-                            placeholder="Password"
-                            style={{ marginRight: "10px" }}
-                          />
-                        </div>
-                        <div className="col form-row field">
-                          <FormRow
-                            className="col email-input"
-                            type="password"
-                            name="confirmPassword"
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                            value={password}
-                            placeholder="Confirm Password"
-                            style={{ marginRight: "10px" }}
-                          />
-                        </div>
-                      </div>
-                      <div className="row">
-                        <button
-                          type="submit"
-                          className="btn btn-primary btn-login"
-                        >
-                          Login
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="row m-2 text-center">
-              <div
-                className="col-9 text-end"
-                style={{
-                  paddingRight: "1px",
-                }}
-              >
-                Already have an account?
-              </div>
-              <div className="col-3 text-start" style={{ paddingLeft: "1px" }}>
-                <a href="/login" style={{ textDecoration: "none" }}>
-                  log in
-                </a>
-              </div>
-            </div>
-          </div>
-          {/* <div className="login-form">
-            <div className="row rectangle-3">
-              <div className="col">
-                <div className="row welcome">
-                  <h2>Create Account</h2>
-                </div>
+        <div className="accountSection">
+          <form className="form" method="post" onSubmit={handleSubmit}>
+            <p className="formHeading2">Create Account</p>
 
-                <div className="mini-container">
-                  <div className="row">
-                    <form method="post" onSubmit={handleSubmit}>
-                      <div className="form-row">
-                        <>
-                          <div className="row">
-                            <div className="col form-row field">
-                              <FormRow
-                                className="col email-input"
-                                type="string"
-                                name="name"
-                                onChange={(e) => setName(e.target.value)}
-                                value={name}
-                                placeholder="Name"
-                                style={{ marginRight: "10px" }}
-                              />
-                            </div>
-                            <div
-                              className="col form-row field"
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                              }}
-                            >
-                              <FormRow
-                                className="col email-input"
-                                type="email"
-                                name="email"
-                                onChange={(e) => setEmail(e.target.value)}
-                                value={email}
-                                placeholder="Email"
-                                style={{ marginRight: "10px" }}
-                              />
-                            </div>
-                            <div className="col form-row field">
-                              <FormRow
-                                className="col email-input"
-                                type="password"
-                                name="password"
-                                onChange={(e) => setPassword(e.target.value)}
-                                value={password}
-                                placeholder="Password"
-                                style={{ marginRight: "10px" }}
-                              />
-                            </div>
-                            <div className="col form-row field">
-                              <FormRow
-                                className="col email-input"
-                                type="password"
-                                name="confirmPassword"
-                                onChange={(e) =>
-                                  setConfirmPassword(e.target.value)
-                                }
-                                value={confirmPassword}
-                                placeholder="Confirm Password"
-                                style={{ marginRight: "10px" }}
-                              />
-                            </div>
-                          </div>
-                        </>
-                      </div>
-                      <div className="row">
-                        <button
-                          type="submit"
-                          className="btn btn-primary btn-login"
-                        >
-                          Create
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
+            <div className="formRow">
+              <FormRow
+                className="formInput"
+                type="string"
+                name="name"
+                onChange={(e) => setName(e.target.value)}
+                value={name}
+                placeholder="Name"
+              />
             </div>
-            <div className="row">
-              <div className="col">Already have an account?</div>
-              <div className="col">
-                <a href="/login">Login</a>
-              </div>
+
+            <div className="formRow">
+              <FormRow
+                className="formInput"
+                type="email"
+                name="email"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+                placeholder="Email"
+              />
             </div>
-          </div> */}
+
+            <div className="formRow">
+              <FormRow
+                className="formInput"
+                type="password"
+                name="password"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+                placeholder="Password"
+              />
+            </div>
+            <div className="formRow">
+              <FormRow
+                className="formInput"
+                type="password"
+                name="confirmPassword"
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                value={password}
+                placeholder="Confirm Password"
+              />
+            </div>
+            <button type="submit" className="loginBtn">
+              Login
+            </button>
+          </form>
+          <div className="alreadyPara">
+            Already have an account ?
+            <Link to="/login" className="LoginButton">
+              Login
+            </Link>
+          </div>
         </div>
       </div>
     </div>
